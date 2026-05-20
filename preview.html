@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Junior BoostLife — Ultra Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f6f7fb;
+color:#0f172a;
+overflow-x:hidden;
+}
+
+/* ================= PRELOADER ================= */
+
+#preloader{
+position:fixed;
+inset:0;
+background:#0b1220;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.loader-box{
+text-align:center;
+color:white;
+}
+
+.spinner{
+width:60px;
+height:60px;
+border-radius:50%;
+border:3px solid rgba(255,255,255,0.1);
+border-top:3px solid #6366f1;
+margin:auto;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
+}
+
+.brand{
+margin-top:25px;
+font-size:26px;
+font-weight:800;
+letter-spacing:3px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:2px;
+}
+
+.brand span{
+opacity:0;
+transform:translateY(10px);
+animation:fadeIn 1s forwards;
+animation-delay:calc(var(--i) * 0.04s);
+}
+
+@keyframes fadeIn{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.loader-box p{
+margin-top:15px;
+color:#94a3b8;
+font-size:14px;
+}
+
+.bar{
+width:260px;
+height:3px;
+background:rgba(255,255,255,0.1);
+margin:20px auto 10px;
+border-radius:10px;
+overflow:hidden;
+}
+
+.progress{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#6366f1,#22d3ee);
+transition:0.2s;
+}
+
+#percent{
+margin-top:10px;
+color:#cbd5e1;
+font-size:13px;
+}
+
+/* ================= NAV ================= */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(14px);
+border-bottom:1px solid #e5e7eb;
+z-index:100;
+}
+
+.logo{
+font-weight:900;
+font-size:22px;
+background:linear-gradient(90deg,#6366f1,#22d3ee);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:#334155;
+font-weight:500;
+}
+
+nav a:hover{
+color:#6366f1;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+padding:140px 8% 80px;
+text-align:center;
+}
+
+.hero h1{
+font-size:78px;
+font-weight:900;
+line-height:1.05;
+letter-spacing:-2px;
+}
+
+.hero h1 span{
+background:linear-gradient(90deg,#6366f1,#22d3ee);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+max-width:700px;
+margin:20px auto;
+color:#64748b;
+font-size:18px;
+line-height:1.7;
+}
+
+.btns{
+margin-top:30px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 26px;
+border-radius:14px;
+font-weight:600;
+text-decoration:none;
+margin:10px;
+transition:0.3s;
+}
+
+.primary{
+background:#6366f1;
+color:white;
+}
+
+.primary:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(99,102,241,0.3);
+}
+
+.secondary{
+border:1px solid #e5e7eb;
+color:#0f172a;
+background:white;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+padding:100px 8%;
+}
+
+.title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.title h2{
+font-size:46px;
+font-weight:900;
+}
+
+.title p{
+color:#64748b;
+margin-top:10px;
+}
+
+/* FEATURES */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:18px;
+border:1px solid #e5e7eb;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* PDF */
+
+.pdf{
+background:linear-gradient(135deg,#6366f1,#22d3ee);
+padding:60px;
+border-radius:30px;
+text-align:center;
+color:white;
+}
+
+.pdf button{
+background:white;
+color:#0f172a;
+border:none;
+padding:14px 25px;
+border-radius:12px;
+font-weight:700;
+margin-top:20px;
+cursor:pointer;
+}
+
+/* QUOTE */
+
+.quote{
+text-align:center;
+font-size:32px;
+font-weight:800;
+padding:100px 20px;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:40px;
+color:#64748b;
+border-top:1px solid #e5e7eb;
+}
+
+/* ANIMATION */
+
+.hidden{
+opacity:0;
+transform:translateY(40px);
+transition:0.8s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+.hero h1{font-size:42px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+
+<div class="loader-box">
+
+<div class="spinner"></div>
+
+<div class="brand">
+<span>J</span><span>U</span><span>N</span><span>I</span><span>O</span><span>R</span>
+<span> </span>
+<span>B</span><span>O</span><span>O</span><span>S</span><span>T</span><span>L</span><span>I</span><span>F</span><span>E</span>
+</div>
+
+<p>Build your mindset • Level up your life</p>
+
+<div class="bar">
+<div class="progress"></div>
+</div>
+
+<div id="percent">0%</div>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<nav>
+<div class="logo">Junior BoostLife</div>
+<div>
+<a href="#">Accueil</a>
+<a href="#">PDF</a>
+<a href="#">Mindset</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero hidden">
+
+<h1>Build your <span>Mindset</span></h1>
+
+<p>
+Plateforme ultra premium pour développer discipline, focus et succès grâce à des ressources modernes et puissantes.
+</p>
+
+<div class="btns">
+<a href="#" class="btn primary">Télécharger PDF</a>
+<a href="#" class="btn secondary">Explorer</a>
+</div>
+
+</div>
+
+<!-- FEATURES -->
+<section>
+<div class="title hidden">
+<h2>Pourquoi Junior BoostLife</h2>
+<p>Une expérience startup moderne de développement personnel</p>
+</div>
+
+<div class="grid">
+
+<div class="card hidden">
+<h3>📘 PDF Premium</h3>
+<p>Guides puissants pour transformer ton mental.</p>
+</div>
+
+<div class="card hidden">
+<h3>⚡ Motivation</h3>
+<p>Contenu quotidien pour rester discipliné.</p>
+</div>
+
+<div class="card hidden">
+<h3>🎯 Focus</h3>
+<p>Améliore ta concentration et ton énergie.</p>
+</div>
+
+</div>
+</section>
+
+<!-- PDF -->
+<section>
+
+<div class="pdf hidden">
+
+<h2>Guide Gratuit Disponible</h2>
+
+<p>Télécharge ton premier PDF de transformation mentale</p>
+
+<button onclick="downloadPDF()">Télécharger</button>
+
+</div>
+
+</section>
+
+<!-- QUOTE -->
+<div class="quote hidden" id="quote">
+“Le succès appartient à ceux qui refusent d’abandonner.”
+</div>
+
+<!-- FOOTER -->
+<footer>
+© 2026 Junior BoostLife — All rights reserved
+</footer>
+
+<script>
+
+/* PRELOADER */
+let percent = 0;
+let bar = document.querySelector(".progress");
+let text = document.getElementById("percent");
+let preloader = document.getElementById("preloader");
+
+let load = setInterval(()=>{
+
+percent++;
+bar.style.width = percent + "%";
+text.innerText = percent + "%";
+
+if(percent >= 100){
+clearInterval(load);
+
+setTimeout(()=>{
+preloader.style.opacity = "0";
+preloader.style.transition = "0.8s";
+
+setTimeout(()=>{
+preloader.style.display = "none";
+},800);
+
+},300);
+
+}
+
+},25);
+
+/* SCROLL */
+const hidden = document.querySelectorAll('.hidden');
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add('show');
+}
+});
+});
+
+hidden.forEach(el=>observer.observe(el));
+
+/* QUOTES */
+const quotes = [
+"Le succès appartient aux disciplinés.",
+"Ton futur dépend de tes actions.",
+"Travaille en silence.",
+"Ne lâche jamais."
+];
+
+let i=0;
+
+setInterval(()=>{
+document.getElementById("quote").innerText = quotes[i];
+i++;
+if(i>=quotes.length) i=0;
+},4000);
+
+/* PDF DOWNLOAD */
+function downloadPDF(){
+alert("PDF en préparation (version backend plus tard)");
+}
+
+</script>
+
+</body>
+</html>
